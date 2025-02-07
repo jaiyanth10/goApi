@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/jaiyanth10/goApi/internal/config"
+	"github.com/jaiyanth10/goApi/internal/http/handlers/student"
 )
 
 func main() {
@@ -22,9 +23,7 @@ func main() {
 	// step 3: setup router
 	//First creating router to handle get request and associated method
 	router := http.NewServeMux()
-	router.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("welcome!"))
-	})
+	router.HandleFunc("POST /api/student", student.New())
 
 	// step 4: configuring server
 	server := http.Server{ //inbuilt server struct
@@ -62,3 +61,4 @@ func main() {
 	}
 	slog.Info("server shutdown successfully ")
 }
+
